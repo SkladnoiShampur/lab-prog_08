@@ -1,0 +1,30 @@
+def modify_matrix(matrix):
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] < 0 and matrix[i][j] % 2 != 0:
+                matrix[i][j] = 0  
+            elif matrix[i][j] > 0:
+                matrix[i][j] = 1 
+    return matrix
+
+def main():
+    M = int(input("Введите количество строк (M): "))
+    N = int(input("Введите количество столбцов (N): "))
+
+    matrix = []
+    print("Введите элементы матрицы:")
+    for i in range(M):
+        row = list(map(int, input().split()))
+        if len(row) != N:
+            print(f"Ошибка: строка должна содержать {N} элементов.")
+            return
+        matrix.append(row)
+
+    modified_matrix = modify_matrix(matrix)
+
+    print("Измененная матрица:")
+    for row in modified_matrix:
+        print(" ".join(map(str, row)))
+
+if __name__ == "__main__":
+    main()
