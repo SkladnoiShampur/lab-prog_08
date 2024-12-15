@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <limits>
+
+using namespace std;
+
+int main() {
+    int M, N;
+
+    cout << "Введите количество строк (M): \n";
+    cin >> M;
+    cout << "Введите количество столбцов (N): \n";
+    cin >> N;
+
+    vector<vector<int>> matrix(M, vector<int>(N));
+
+    cout << "Введите элементы матрицы:" << endl;
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    int minE = numeric_limits<int>::max();
+    int minI = -1;
+
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            if (matrix[i][j] < minE) {
+                minE = matrix[i][j];
+                minI = i;
+            }
+        }
+    }
+
+    if (minI != -1) {
+        matrix.erase(matrix.begin() + minI);
+    }
+
+    cout << "Матрица после удаления строки с минимальным элементом:" << endl;
+    for (const auto& row : matrix) {
+        for (const auto& elem : row) {
+            cout << elem << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
